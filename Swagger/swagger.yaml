@@ -1,0 +1,135 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Sogeti cat store API
+  description: A cat store API for interview excercies
+  contact:
+    name: Sogeti Örebro
+    email: sofia.stenegard-sundqvist@sogeti.se
+    url: https://www.sogeti.se/kontakta-oss/#orebro
+host: sogetiorebrointerview.azurewebsites.net
+basePath: /api
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /cats:
+    get:
+      description: Returns all cats that the user can order 
+      operationId: getCats
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: A collection of all cats  
+          schema:
+            $ref: '#/definitions/cats'
+        default:
+          description: Unknown error
+  /reset:
+    put:
+      description: Resets the server application state
+      responses:
+        '200':
+          description: Resets cats and orders to initial state
+  /orders:
+    get:
+      description: Returns all available orders
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: A collection of all orders  
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/order'
+        default:
+          description: Unknown error
+    post:
+      description: Place a order
+      produces:
+        - application/json
+      parameters:
+        - name: order
+          in: body
+          description: Order to add to place
+          required: true
+          schema:
+            $ref: '#/definitions/newOrder'
+      responses:
+        '202':
+          description: Returns the id of the order
+          schema:
+            $ref: '#/definitions/resultOrder'
+        '400':
+          description: Validation error
+        default:
+          description: Unknown error
+  /orders/{id}/receipt:
+    get:
+      description: Returns a receipt
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Receipt for a specific order  
+          schema:
+              $ref: '#/definitions/receipt'
+        '404':
+          description: Order not found
+        default:
+          description: Unknown error
+      parameters:
+        - name: id
+          in: path
+          description: Id of order to fetch
+          required: true
+          type: string
+    
+definitions:
+  cats:
+    type: object
+    properties:
+      cats:
+        type: array
+        items:
+          $ref: '#/definitions/cat'
+  cat:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+        format: double
+  order:
+    type: object
+    properties:
+      id:
+        type: string
+  newOrder:
+    type: object
+    properties:
+      catIds:
+        type: array
+        items:
+          type: string
+  resultOrder:
+    type: object
+    properties:
+      orderId:
+        type: string
+  receipt:
+    type: object
+    properties:
+      status:
+        type: string
+      sum:
+        type: number
+        format: double

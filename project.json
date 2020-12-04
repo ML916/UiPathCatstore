@@ -1,0 +1,67 @@
+{
+  "name": "API_Test_Library",
+  "description": "Demos for KO-RPA. Testing with CatStore API",
+  "main": "NewActivity.xaml",
+  "dependencies": {
+    "UiPath.System.Activities": "20.10.1",
+    "UiPath.Testing.Activities": "1.2.4"
+  },
+  "webServices": [
+    {
+      "namespace": "SogeticatstoreAPI",
+      "serviceDocument": "Services\\SogeticatstoreAPI.json",
+      "webDocumentUri": "C:\\Users\\Mikael\\Documents\\UiPath\\API_Test\\Swagger\\swagger.yaml",
+      "uniqueReference": "qOx7jgNmS7LOgb+FS8rBL48zVk7MjmnxHkt6CSV6Ys0="
+    }
+  ],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "20.10.0.0",
+  "projectVersion": "1.0.3",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "isPausable": true,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Library",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "0a616c99-894f-4546-aee5-7e18aea047aa",
+        "fileName": "TestCases\\Test_GetAllAvailableCats_Success.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "6bdfe694-2cbc-4b20-958a-9cbb77556df9",
+        "fileName": "TestCases\\Test_PurchaseCat_Success.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "9ef3d777-6991-47db-b87c-076d39d2ef8b",
+        "fileName": "TestCases\\Test_PurchaseCat_Fail.xaml"
+      }
+    ],
+    "modernBehavior": false
+  },
+  "expressionLanguage": "VisualBasic",
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {}
+}
