@@ -5,7 +5,7 @@ info:
   description: A cat store API for interview excercies
   contact:
     name: Sogeti Örebro
-    email: sofia.stenegard-sundqvist@sogeti.se
+    email: 
     url: https://www.sogeti.se/kontakta-oss/#orebro
 host: sogetiorebrointerview.azurewebsites.net
 basePath: /api
