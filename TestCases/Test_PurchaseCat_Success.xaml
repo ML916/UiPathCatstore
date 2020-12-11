@@ -1,13 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Activity mc:Ignorable="sap sap2010" x:Class="Test_PurchaseAvailableCat_Success" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:uw_="clr-namespace:UiPath.WebClient._ClientNamespace;assembly=SogeticatstoreAPI" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="CatID" Type="InArgument(x:String)" />
     <x:Property Name="CatName" Type="InArgument(x:String)" />
+    <x:Property Name="Success" Type="InArgument(x:Boolean)" />
+    <x:Property Name="Code" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>768,971</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1237,1304</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Test_PurchaseAvailableCat_Success_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="52">
@@ -43,6 +44,7 @@
       <x:String>UiPath.Testing.Activities</x:String>
       <x:String>System.Activities.DynamicUpdate</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -75,17 +77,19 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.Testing</AssemblyReference>
       <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Test_PurchaseAvailableCat_Success" sap:VirtualizedContainerService.HintSize="618,806" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Use test data to run both failing and successful cat purchases" DisplayName="Test_PurchaseAvailableCat_Success" sap:VirtualizedContainerService.HintSize="618,1099" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="StatusCode" />
       <Variable x:TypeArguments="x:String" Name="OrderId" />
-      <Variable x:TypeArguments="x:Boolean" Name="PurchaseSucceded" />
+      <Variable x:TypeArguments="x:Boolean" Name="PurchaseSuccededFromAPI" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Sequence DisplayName="... Given" sap:VirtualizedContainerService.HintSize="576,114" sap2010:WorkflowViewState.IdRef="Sequence_2">
@@ -108,34 +112,28 @@
       </sap:WorkflowViewStateService.ViewState>
       <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke PurchaseCat workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Purchase Cat.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="CatToBePurchased">
-            <Literal x:TypeArguments="x:String">dad33d92-507b-4f96-ab59-2411de30e183</Literal>
-          </InArgument>
-          <OutArgument x:TypeArguments="x:Boolean" x:Key="PurchaseSucceeded">
-            <mva:VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="PurchaseSucceded" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="OrderID">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="OrderId" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="StatusCode">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="StatusCode" />
-          </OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="CatToBePurchased">[CatID]</InArgument>
+          <OutArgument x:TypeArguments="x:Boolean" x:Key="PurchaseSucceeded">[PurchaseSuccededFromAPI]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="OrderID">[OrderId]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="StatusCode">[StatusCode]</OutArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Sequence>
-    <Sequence DisplayName="... Then" sap:VirtualizedContainerService.HintSize="576,316" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence DisplayName="... Then" sap:VirtualizedContainerService.HintSize="576,578" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uta:VerifyExpression KeepScreenshots="{x:Null}" ScreenshotsPath="{x:Null}" ContinueOnFailure="True" DisplayName="Verify Expression" Expression="[PurchaseSucceded = True]" sap:VirtualizedContainerService.HintSize="534,61" sap2010:WorkflowViewState.IdRef="VerifyExpression_1" TakeScreenshotInCaseOfFailingAssertion="False" TakeScreenshotInCaseOfSucceedingAssertion="False" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="534,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Success Status API: &quot; + PurchaseSuccededFromAPI.ToString + Environment.NewLine +&quot;Expected Success Status: &quot; + Success.ToString]" />
+      <uta:VerifyExpression KeepScreenshots="{x:Null}" ScreenshotsPath="{x:Null}" ContinueOnFailure="True" DisplayName="Verify Expression" Expression="[PurchaseSuccededFromAPI = Success]" sap:VirtualizedContainerService.HintSize="534,61" sap2010:WorkflowViewState.IdRef="VerifyExpression_1" TakeScreenshotInCaseOfFailingAssertion="False" TakeScreenshotInCaseOfSucceedingAssertion="False" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="534,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;StatusCode: &quot; + StatusCode + Environment.NewLine + &quot;Code: &quot; + Code]" />
       <uta:VerifyExpressionWithOperator KeepScreenshots="{x:Null}" ScreenshotsPath="{x:Null}" ContinueOnFailure="True" DisplayName="Verify Expression with Operator" sap:VirtualizedContainerService.HintSize="534,61" sap2010:WorkflowViewState.IdRef="VerifyExpressionWithOperator_1" Operator="Equality" TakeScreenshotInCaseOfFailingAssertion="False" TakeScreenshotInCaseOfSucceedingAssertion="False">
         <uta:VerifyExpressionWithOperator.FirstExpression>
           <InArgument x:TypeArguments="x:Object">[StatusCode]</InArgument>
         </uta:VerifyExpressionWithOperator.FirstExpression>
         <uta:VerifyExpressionWithOperator.SecondExpression>
-          <InArgument x:TypeArguments="x:String">["200"]</InArgument>
+          <InArgument x:TypeArguments="x:String">[Code]</InArgument>
         </uta:VerifyExpressionWithOperator.SecondExpression>
       </uta:VerifyExpressionWithOperator>
       <uw_:ResetActivity BearerToken="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" Headers="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Username="{x:Null}" DisplayName="Reset" Endpoint="[&quot;http://sogetiorebrointerview.azurewebsites.net/api&quot;]" sap:VirtualizedContainerService.HintSize="534,22" sap2010:WorkflowViewState.IdRef="ResetActivity_2" TimeoutMS="30000">

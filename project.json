@@ -4,7 +4,8 @@
   "main": "NewActivity.xaml",
   "dependencies": {
     "UiPath.System.Activities": "20.10.1",
-    "UiPath.Testing.Activities": "1.2.4"
+    "UiPath.Testing.Activities": "1.2.4",
+    "UiPath.UIAutomation.Activities": "20.10.6"
   },
   "webServices": [
     {
@@ -50,12 +51,18 @@
       {
         "editingStatus": "InProgress",
         "testCaseId": "6bdfe694-2cbc-4b20-958a-9cbb77556df9",
+        "dataVariationFilePath": ".variations\\PurchaseCatTestData_Sheet1.json",
         "fileName": "TestCases\\Test_PurchaseCat_Success.xaml"
       },
       {
         "editingStatus": "InProgress",
         "testCaseId": "9ef3d777-6991-47db-b87c-076d39d2ef8b",
         "fileName": "TestCases\\Test_PurchaseCat_Fail.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "8abd2560-2c08-496a-8b56-fc22f3d4c7a9",
+        "fileName": "TestCases\\OpenGoogleTest_Success.xaml"
       }
     ],
     "modernBehavior": false
